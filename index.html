@@ -7,16 +7,41 @@
 
 <script>
 
+function verificarnota(nota) {
+    let notaconvertida = number(nota);
+    nota = parseFloat(nota);
+    if (isNaN(notaconvertida) || notaconvertida < 0 || notaconvertida > 10) {
+        console.log('Nota inválida! Digite outra nota. Insira um número entre 0 e 10.');
+        return
+    }
+}
+    
+    
+
     let nota = parseFloat(prompt("Digite a sua nota: "));
         if (nota >= 7){
             alert("Aprovado!");
         }
-        else if (nota >= 5 && nota < 6.5){
+        else if (nota >= 5 && nota < 6.9){
             alert("Recuperação!");
         }
         else{
             alert("Reprovado!")
         }
+
+        verificarnota(8);
+        verificarnota("abc");
+        verificarnota(11);
+        verificarnota(-2);
+        verificarnota(5.5);
+        verificarnota(3); 
+        verificarnota(10);  
+        verificarnota(7.5);     
+
+        
+
+        
+
 
     
 
