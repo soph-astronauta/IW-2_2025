@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    let opcao;
+
+    while (opcao !== '3'){
+        opcao = prompt(
+            "MENU\n" +
+            "1 - Calcular média\n" +
+            "2 - Sobre\n" +
+            "3 Sair\n\n" +
+            "Escolha uma opção:"
+                );
+
+    switch (opcao){
+        case '1':
+
+        let nota1 = parseFloat(prompt("Digite a primeira nota: "));
+        let nota2 = parseFloat(prompt("Digite a segunda nota: "));
+
+    if (isNaN(nota1) || isNaN(nota2)){
+        alert("voce deve digitar duas notas válidas.");
+        break;
+    }
+
+    let media = (nota1 + nota2)/2;
+    let mensagem = `Média: ${media.toFixed(2)}\n`;
+
+    if (media >= 7) {
+        mensagem += "Situação: Aprovado!";
+    }else if (media >= 5){
+        mensagem += "Situação: Recuperação!";
+    }else {
+        mensagem += "Situação: Reprovado.";
+    }
+
+    alert(mensagem);
+    break;
+
+    case '2':
+        alert('Usando switch e while.');
+    break;
+    
+    case '3':
+        alert('Saindo...');
+        break;
+
+    default:
+        alert("Opção inválida. Tente novamente.");
+    }
+    }
+</script>
+    
+</script>
+
+</body>
+</html>
