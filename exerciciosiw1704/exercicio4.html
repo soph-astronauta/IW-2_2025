@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem regressiva</title>
+</head>
+<body>
+    
+<script>
+//permite que o usuario insira um numero
+let numero = prompt("Digite um numero: ");
+
+//aceita apenas numeros inteiros
+numero = parseInt(numero);
+
+//verifica se a entrada foi válida
+if(isNaN(numero) || numero < 0){
+    alert("Digite um número válido ");
+}else{
+    
+    //faz a contagem regressiva usando while
+    //console.log permite que abra no console do navegador
+    while (numero >= 0){
+        console.log(numero);
+        numero --;
+    }
+}
+
+</script>
+
+</body>
+</html>

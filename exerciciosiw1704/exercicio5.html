@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de multiplicação</title>
+</head>
+<body>
+    
+<script>
+//permite que o usuario digite um numero de sua preferencia
+let numero = prompt("Digite um número: ");
+
+//verifica se e um numero inteiro
+numero = parseInt(numero);
+
+//verifica se o numero e valido
+if (isNaN(numero)) {
+    document.write("Digite um numero valido.");
+}else{
+    document.write(`<h2>Tabuada do ${numero}<h2>`);
+        
+        //faz o calculo usando for e repassa os valores
+        for (let i = 1; i <= 10; i++){
+            let resultado = numero*i;
+            document.write(`${numero} x ${i}=${resultado}<br>`);
+        }
+}
+
+</script>
+
+</body>
+</html>
