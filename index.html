@@ -3,55 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 
-<script>
+    <title>Calcular IMC</title>
 
-function verificarnota(nota) {
-    let notaconvertida = number(nota);
-    nota = parseFloat(nota);
-    if (isNaN(notaconvertida) || notaconvertida < 0 || notaconvertida > 10) {
-        console.log('Nota inválida! Digite outra nota. Insira um número entre 0 e 10.');
-        return
-    }
-}
-    
-    
-
-    let nota = parseFloat(prompt("Digite a sua nota: "));
-        if (nota >= 7){
-            alert("Aprovado!");
-        }
-        else if (nota >= 5 && nota < 6.9){
-            alert("Recuperação!");
-        }
-        else{
-            alert("Reprovado!")
-        }
-
-        verificarnota(8);
-        verificarnota("abc");
-        verificarnota(11);
-        verificarnota(-2);
-        verificarnota(5.5);
-        verificarnota(3); 
-        verificarnota(10);  
-        verificarnota(7.5);     
-
-        
-
-        
-
-
-    
-
-            
-        
-
-</script>
 
 </head>
 <body>
     
+<label for="peso">Peso (Kg):</label>
+<input type="number" name="" id="peso" step="0.1">
+
+<label for="altura">Altura (m):</label>
+<input type="number" name="" id="altura" step="0.01">
+
+<button onclick="mostrarResultado()">Calcular IMC</button>
+
+<div id="resultado"></div>
+
+<img src="img/imagemimc-Google Search.png" alt="imc">
+
+
+
+<script>
+
+function calcularIMC(peso, altura){
+    return peso / (altura*altura);
+}
+
+function mostrarResultado() { 
+    const peso = parseFloat(document.getElementById('peso').value);
+    const altura = parseFloat(document.getElementById('altura').value);
+    const resultado = document.getElementById('resultado');
+
+    if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+        resultado.textContent = 'Por favor, insira valores válidos.';
+        return;
+    }
+
+
+const imc = calcularIMC(peso, altura).toFixed(2);
+let classificacao = '';
+
+if (imc<18.5){
+    classificacao = 'Abaixo do peso';
+}else if (imc<25){
+    classificacao = 'Peso normal';
+}else if (imc<30){
+    classificacao = 'Sobrepeso';
+}else if (imc<35){
+    classificacao = 'Obesidade grau I';
+}else if (imc<40){
+    classificacao = 'Obesidade grau II';
+}else {
+    classificacao = 'Obesidade grau III';
+}
+
+
+
+resultado.textContent = `Seu IMC é ${imc} (${classificacao}).`;
+}
+
+</script>
+
 </body>
 </html>
