@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<p>Parágrafo pode ser mostrado e escondido.</p>
+<button onclick="alternarParagrafo()">Mostrar/Esconder</button>
+
+<script>
+
+function alternarParagrafo(){
+    const paragrafo = document.getElementById("paragrafo");
+    if (paragrafo.style.display === "nome"){
+        paragrafo.style.display = "block";
+    }else{
+        paragrafo.style.display = "nome";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
