@@ -1,26 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-
-let resposta = confirm("Voce deseja continuar?");
-       if(resposta){
-        alert("Voce escolheu continuar.");
-         }  
-        else {
-            alert("Voce cancelou a ação");
-        }
-
-        //exemplo 05
-
-         
-
-    </script>
-
 </head>
 <body>
-    <h1>Aula03 - JS</h1>
+    <script>
+
+        function mostrarNome(){
+            const nome = document.getElementById("nome").value;
+            alert("Nome digitado: " + nome);
+        }
+
+        
+        
+    </script>
+
+    <input type="text" name="" id="nome" placeholder="digite seu nome">
+    <button onclick="mostrarNome()">Mostrar nome</button>
 </body>
 </html>
