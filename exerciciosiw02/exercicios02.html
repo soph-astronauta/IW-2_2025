@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>1. Mudar cor de fundo ao clicar no elemento</p>
+    <button id="mudarCor">Mudar cor de fundo</button>
+
+    <script>
+
+        document.getElementById("mudarCor").addEventListener("click", function (){
+            document.body.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+        });
+    </script>
+    
+
+<p>2. Adicionar item a lista existente dinamicamente</p>
+
+<input id="novoItem" placeholder=" Novo item"/>
+<button id="adicionar">Adicionar</button>
+<ul id="lista"></ul>
+
+<script>
+    document.getElementById("adicionar").addEventListener("click", function () {
+        const texto = document.getElementById("novoItem").value;
+        const li = document.createElement("li");
+        li.innerText = texto;
+        document.getElementById("lista").appendChild(li);
+        document.getElementById("novoItem").value = "";
+    });
+</script>
+
+
+<p>3. Remover item da lista ao clicar no botão</p>
+
+<ul id="lista">
+    <li>Item 1 <button class="remover">X</button></li>
+</ul>
+
+<script>
+    document.addEventListener("click", function (e){
+        if (e.target.classlist.contains("remover")){
+
+        }
+    });
+</script>
+
+
+
+<p>4. Mostrar/esconder elemento ao passar o mouse</p>
+
+<div id="area" style="width: 200px; height: 100px;background-color: aliceblue;">Passe o mouse</div>
+<p id="mensagem" style="display: none;">Voce passou o mouse!</p>
+
+<script>
+    const area = document.getElementById("area");
+    const msg = document.getElementById("mensagem");
+
+    area.addEventListener("mouseenter", () => msg.style.display = "block");
+    area.addEventListener("mouseenter", () => msg.style.display = "nome");
+
+</script>
+
+
+<p>5. Modificar texto com entrada do usuário</p>
+
+<input id="nome" placeholder="Digite seu nome" />
+<button id="mostrarNome">Mostrar</button>
+<p id="saudacao"></p>
+
+<script>
+    document.getElementById("mostrarNome").addEventListener("click", function (){
+        const nome = document.getElementById("nome").value;
+        document.getElementById("saudacao").innerText = `Olá, ${nome}!`;
+    });
+
+</script>
+
+
+<p>6. Criar menu dropdown dinamico</p>
+
+<select name="" id="menu"></select>
+<button id="addOpcao">Adicionar opção</button>
+
+<script>
+    const menu = document.getElementById("menu");
+    let contador = 1;
+
+    document.getElementById("addOpcao").addEventListener("click", () => {
+        const opcao = document.createElement("option");
+        opcao.text = "Opção" + constador++;
+        menu.add(opcao);
+    });
+</script>
+
+
+<p>7. Validar formulário em tempo real</p>
+
+<input id="email" placeholder="Digite seu email" />
+<p id="feedback"></p>
+
+<script>
+    document.getElementById("email").addEventListener("input", function (){
+        const valor = this.value;
+        const feedback = document.getElementById("feedback");
+        if (valor.includes("@") && valor.includes(".")) {
+            feedback.innerText = "Email válido ";
+            feedback.style.color = "green";
+        }else{
+            feedback.innerText = "Email inválido ";
+            feedback.style.color = "red";
+        }
+    });
+</script>
+
+
+<p>8. Animar elemento com JavaScript</p>
+
+<div id="quadrado" style="width: 100px;height: 100px;background: red;position: relative;"></div>
+<button id="mover">Mover</button>
+
+<script>
+    document.getElementById("mover").addEventListener("click", function () {
+        let pos = 0;
+        const box = document.getElementById("quadrado");
+        const intervalo = setInterval(function (){
+            if (pos >= 300) clearInterval(intervalo);
+            else{
+                pos++;
+                box.style.left = pos + "px";
+            }
+        }, 5);
+    });
+</script>
+
+
+//<p>9. Filtrar lista com termo de busca</p>
+
+<input id="filtro" placeholder="Buscar..." />
+<ul id="lista">
+    <li>Maçã</li>
+    <li>Banana</li>
+    <li>Laranja</li>
+</ul>
+
+ <script>
+    document.getElementById("filtro").addEventListener("input", function (){
+        const termo = this.value.toLowerCase();
+        const itens = document.querySelectorAll("#lista li");
+       itens.forEach((item) => {
+        item.style.display = item.innerText.toLowerCase().includes(termo) ? "list-item" : "none";
+       });
+    });
+</script> 
+
+
+<p>10. Criar carrossel simples de imagens</p>
+
+<img id="carrossel" src="img/shutterstock-540015799.avif" width="300" alt="">
+<button id="anterior">Anterior</button>
+<button id="proximo">Próximo</button>
+
+<script>
+    const imagens = ["img/shutterstock-540015799.avif", "img2.png", "img3.png"];
+    let atual = 0;
+    const carrossel = document.getElementById("carrossel");
+
+    document.getElementById("proximo").addEventListener("click", () => {
+        atual = (atual + 1) % imagens.length;
+        carrossel.src = imagens[atual];
+    });
+
+    document.getElementById("anterior").addEventListener("click", () => {
+        atual = (atual - 1 + imagens.length) % imagens.length;
+        carrossel.src = imagens[atual];
+    });
+</script>
+
+
+
+
+</body>
+</html>
