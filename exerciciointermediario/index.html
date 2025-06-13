@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de manipulação do DOM - Versão para preenchimento</title>
+</head>
+<body>
+    <form id="meuFormulario">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome"><br><br>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data"><br><br>
+
+    <button type="button" onclick="preencherCampos()">Preencher</button>
+  </form>
+
+  <script src="script.js"></script>
+
+  <script>
+
+  function preencherCampos() {
+  const nomeCampo = document.getElementById('nome');
+  const dataCampo = document.getElementById('data');
+
+  
+  nomeCampo.value = 'Sophia';
+
+  
+  const hoje = new Date();
+  const ano = hoje.getFullYear();
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const dataFormatada = `${ano}-${mes}-${dia}`;
+
+  
+  dataCampo.value = dataFormatada;
+}
+</script>
+
+<p>1 - Botão que exibe a hora atual ao ser clicado dentro de um parágrafo</p>
+
+ <button onclick="mostrarHora()">Mostrar Hora Atual</button>
+  <p id="hora"></p>
+
+  <script>
+    function mostrarHora() {
+      const agora = new Date();
+      const horas = String(agora.getHours()).padStart(2, '0');
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+
+      const horaAtual = `${horas}:${minutos}:${segundos}`;
+      
+      
+      document.getElementById('hora').textContent = `Hora atual: ${horaAtual}`;
+    }
+  </script>
+
+  <p>2 - Botão com ícone que alterna entre o modo escuro da página usando ClassList</p>
+
+  <button onclick="alternarModo()">
+    <span class="icon">🌞</span>
+    Alternar Tema
+  </button>
+
+  <script>
+    const body = document.body;
+    const icon = document.querySelector('.icon');
+
+    function alternarModo() {
+      body.classList.toggle('dark-mode');
+      
+      
+      if (body.classList.contains('dark-mode')) {
+        icon.textContent = '🌙'; 
+      } else {
+        icon.textContent = '🌞'; 
+      }
+    }
+  </script>
+
+  <p>3 - Botão de curtir com ícone de coração que, ao ser clicado, aumenta um contador</p>
+
+  <button class="like-btn" onclick="curtir()">
+    ❤️ <span class="like-count">0</span>
+  </button>
+
+  <script>
+    let curtidas = 0;
+    const botao = document.querySelector('.like-btn');
+    const contador = document.querySelector('.like-count');
+
+    function curtir() {
+      curtidas++;
+      contador.textContent = curtidas;
+      botao.classList.add('liked');
+    }
+  </script>
+
+  <p>4 - Campo que exibe alerta ao perder o foco se estiver vázio</p>
+
+  <label for="nome">Nome (obrigatório):</label>
+  <input type="text" id="nome" placeholder="Digite seu nome">
+
+  <script>
+    const campoNome = document.getElementById('nome');
+
+    campoNome.addEventListener('blur', () => {
+      if (campoNome.value.trim() === '') {
+        alert('O campo "Nome" é obrigatório.');
+        campoNome.focus(); 
+      }
+    });
+  </script>
+
+  <p>5 - Botão que expande e encolhe um parágrafo com efeito de transição suave</p>
+
+  <button onclick="alternarParagrafo()">Mostrar/Esconder</button>
+
+  <div id="paragrafo" class="conteudo">
+    <p>
+      Este é um parágrafo que pode ser expandido e encolhido com uma transição suave. 
+      Muito útil para FAQs, detalhes ou informações que o usuário pode esconder ou revelar.
+    </p>
+  </div>
+
+  <script>
+    function alternarParagrafo() {
+      const conteudo = document.getElementById('paragrafo');
+      conteudo.classList.toggle('ativo');
+    }
+  </script>
+
+  <p>6 - Botão que copia o conteúdo de uma div para a área de transferencia (clipboard)</p>
+
+  <div id="conteudo">
+    Este é o texto que será copiado para a área de transferência.
+  </div>
+
+  <button onclick="copiarTexto()">Copiar</button>
+
+  <script>
+    function copiarTexto() {
+      const div = document.getElementById('conteudo');
+      const texto = div.innerText;
+
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("Texto copiado com sucesso!");
+      }).catch(err => {
+        alert("Erro ao copiar: " + err);
+      });
+    }
+  </script>
+
+  <p>7 - Campo de texto que fica com borda vermelha se o conteúdo for menor que 5 caracteres</p>
+ 
+  <label for="campo">Digite algo (mínimo 5 caracteres):</label><br>
+  <input type="text" id="campo">
+
+  <script>
+    const campo = document.getElementById('campo');
+
+    campo.addEventListener('input', () => {
+      if (campo.value.length < 5) {
+        campo.classList.add('invalido');
+      } else {
+        campo.classList.remove('invalido');
+      }
+    });
+  </script>
+
+  <p>8 - Botão que gera 5 quadrados com cores de fundo aleatórias dentro de um container</p>
+
+  <button onclick="gerarQuadrados()">Gerar Quadrados</button>
+
+  <div id="container"></div>
+
+  <script>
+    function gerarCorAleatoria() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function gerarQuadrados() {
+      const container = document.getElementById('container');
+      container.innerHTML = ''; // Limpa os quadrados anteriores
+
+      for (let i = 0; i < 5; i++) {
+        const quadrado = document.createElement('div');
+        quadrado.classList.add('quadrado');
+        quadrado.style.backgroundColor = gerarCorAleatoria();
+        container.appendChild(quadrado);
+      }
+    }
+  </script>
+
+  <p>9 - Campo de upload de imagem e exibir uma pré-visualização da imagem selecionada</p>
+
+  <label for="upload">Selecione uma imagem:</label><br>
+  <input type="file" id="upload" accept="image/*" />
+
+  <div>
+    <img id="preview" src="" alt="Pré-visualização da imagem" style="display: none;" />
+  </div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const preview = document.getElementById('preview');
+
+    upload.addEventListener('change', () => {
+      const file = upload.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        preview.src = url;
+        preview.style.display = 'block';
+
+        // Opcional: liberar memória quando não precisar mais da URL
+        preview.onload = () => URL.revokeObjectURL(url);
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+  </script>
+
+  <p>10 - Lista onde cada item possi botões para mover o item para cima ou para baixo</p>
+
+  <ul id="lista">
+    <li>Item 1
+      <span>
+        <button onclick="moverCima(this)">↑</button>
+        <button onclick="moverBaixo(this)">↓</button>
+      </span>
+    </li>
+    <li>Item 2
+      <span>
+        <button onclick="moverCima(this)">↑</button>
+        <button onclick="moverBaixo(this)">↓</button>
+      </span>
+    </li>
+    <li>Item 3
+      <span>
+        <button onclick="moverCima(this)">↑</button>
+        <button onclick="moverBaixo(this)">↓</button>
+      </span>
+    </li>
+    <li>Item 4
+      <span>
+        <button onclick="moverCima(this)">↑</button>
+        <button onclick="moverBaixo(this)">↓</button>
+      </span>
+    </li>
+  </ul>
+
+  <script>
+    function moverCima(botao) {
+      const li = botao.closest('li');
+      const anterior = li.previousElementSibling;
+      if (anterior) {
+        li.parentNode.insertBefore(li, anterior);
+      }
+    }
+
+    function moverBaixo(botao) {
+      const li = botao.closest('li');
+      const proximo = li.nextElementSibling;
+      if (proximo) {
+        li.parentNode.insertBefore(proximo, li);
+      }
+    }
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
